@@ -11,7 +11,8 @@ function fetchCountry(query)
 		},
 		error : function(error)
 		{
-			console.log(error);
+			//console.log(error);
+			displayError(error);
 		}
 	});
 }
@@ -30,15 +31,23 @@ function displayResults(responseJSON)
 												<img class="dimension" src="${responseJSON[i].flag}" alt="bandera" />
 												<p>Poblacion: ${responseJSON[i].population}</p>
 												<p>Region: ${responseJSON[i].region}</p>
-												<p>Zonas horarias: ${responseJSON[i].timezones}</p>
+												<p>Zonas horarias: ${responseJSON[i].timezones} </p>
 												<p>Paises con los que conlinda: ${responseJSON[i].borders}</p>
 											</div>`);
 		}
 	}
-	else
+
+}
+
+function displayError(error)
+{
+	console.log(error);
+	if(error)
 	{
-		$(".js-search-results").append(`<p>No se encontro país</p> `);
+		$(".noResults").text("Pais no existente");
+		$(".noResults").show();
 	}
+	
 }
 
 function init()
